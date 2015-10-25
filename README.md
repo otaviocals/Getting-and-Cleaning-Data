@@ -1,1 +1,42 @@
-# Getting-and-Cleaning-Data
+# Getting and Cleaning Data Programming Assignment
+##Written by Otavio Cals
+###October/2015
+
+We present here a R program (run_analysis.R) for reading and cleaning the Samsung Human Activity Dataset.
+
+####Preparing to Read the Data
+
+Before running the program, make sure that the UCI HAR Dataset folder is in the working directory.
+
+####Running the Program
+
+The program execute the following steps:
+	1. Read Data.
+	--1. Reads the features.txt file to obtain the list of variable names.
+	--2. Reads the Train Tables.
+		--1. Reads the X_train.txt file and assign the files.txt variable names to it's columns.
+		--2. Reads the subject_train.txt file.
+		--3. Reads the y_train.txt file.
+		--4. Column bind the data in the following order: subject_train data, y_train data, X_train data.
+		--5. Renames the first two columns of the new data to "subject" and "activity"
+	--3. Reads the Test Tables.
+		--1. Reads the X_test.txt file and assign the files.txt variable names to it's columns.
+		--2. Reads the subject_test.txt file.
+		--3. Reads the y_test.txt file.
+		--4. Column bind the data in the following order: subject_test data, y_test data, X_test data.
+		--5. Renames the first two columns of the new data to "subject" and "activity".
+	2. Merge Data
+		--* Column bind the Train Table and Test Table obtained in the first steps.
+	3. Subsetting Data
+		--* Subsets the values subject, activity and values ending in "mean()" and "std()", to create a new dataset.
+	4. Rename Activities
+		--1. Apply arrange() on the dataset so its arranged in the order of subjects and then in activities.
+		--2. Rename the activities following the information provided in activity_labels.txt.
+	5. Rename Variables
+		--* Rename the variables in the dataset for easier reading.
+	6. Create Tidy Dataset
+		--1. Apply group_by() in the dataset to group it by subjects and then by activities.
+		--2. Apply summarize() in the grouped dataset, getting the mean value for each variable in each subgroup.
+	7. Saving the Data
+		--* Outputs data as a .xlsx file named summarized.xlsx and as a tab-delimited .txt file named summarized.txt.
+	
